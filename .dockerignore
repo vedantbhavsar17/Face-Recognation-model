@@ -1,0 +1,13 @@
+.git
+.venv
+.local-backup
+dataset
+*.csv
+*.ipynb
+__pycache__
+.DS_Store
+.env
+.env.*
+encode_face.pkl
+recognize_face.pkl
+uploads

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="shell">
+  <header><a class="brand" href="/" aria-label="Facefolio home"><span class="brand-icon">f.</span> facefolio<span class="brand-dot">●</span></a><span class="header-note">A little face discovery.</span></header>
+  <main>
+    <section class="intro">
+      <div class="eyebrow"><span></span> CELEBRITY FACE RECOGNITION</div>
+      <h1>A familiar face.<br>A name to <em>match.</em></h1>
+      <p class="lede">From screen legends to today’s stars. Drop in a portrait and find its closest match in our celebrity collection.</p>
+      <div class="collection"><div class="portrait-mark">✳</div><div><strong>{{ celebrity_count }} familiar names</strong><span>One portrait. A new discovery.</span></div></div>
+      <div class="steps"><div><span>01</span> Pick a portrait</div><div><span>02</span> Find the face</div><div><span>03</span> Meet the match</div></div>
+    </section>
+    <section class="workspace" aria-label="Recognize a celebrity">
+      <div class="card-top"><span>YOUR PORTRAIT</span><span class="counter">01 / 01</span></div>
+      <form id="recognition-form" action="/predict" method="post" enctype="multipart/form-data">
+        <label class="dropzone" id="dropzone" for="image-input">
+          <input id="image-input" name="image" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="file-help">
+          <div id="upload-prompt"><div class="face-frame"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M23 8H8v15M57 8h15v15M8 57v15h15M72 57v15H57" stroke="currentColor" stroke-width="2"/><ellipse cx="40" cy="33" rx="12" ry="15" stroke="currentColor" stroke-width="2"/><path d="M18 65c1-15 43-15 44 0" stroke="currentColor" stroke-width="2"/></svg><span class="scan-line"></span></div><h2>Start with a face.</h2><p>Drag your photo here, or <span class="browse">browse files</span></p><small id="file-help">JPG, PNG or WebP · Up to 10 MB</small></div>
+          <img id="preview" alt="Your selected portrait" hidden>
+          <span id="change-photo" hidden>Click to change photo</span>
+        </label>
+        <div class="file-meta"><span id="file-name">No photo selected</span><button id="clear" type="button" hidden>Remove</button></div>
+        <button class="submit" id="submit" type="submit" disabled><span id="button-text">Find the match</span><span aria-hidden="true">↗</span></button>
+      </form>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div id="result" class="result" hidden><span class="result-label">CLOSEST CELEBRITY MATCH</span><h2 id="result-name"></h2><p>A prediction from our collection, not a verified identity.</p></div>
+      <p class="privacy"><span aria-hidden="true">◇</span> Your upload is processed in memory and isn’t saved.</p>
+    </section>
+  </main>
+  <footer><span>GOOD LIGHT. ONE FACE. BETTER MATCHES.</span><span>Made for a moment of recognition. <span class="footer-star">✳</span></span></footer>
+</div>
+{% endblock %}
